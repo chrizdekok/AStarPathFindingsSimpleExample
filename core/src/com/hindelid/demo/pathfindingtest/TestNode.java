@@ -1,3 +1,19 @@
+/*******************************************************************************
+ * Copyright 2014 Christoffer Hindelid.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
+
 package com.hindelid.demo.pathfindingtest;
 
 import com.badlogic.gdx.ai.pfa.Connection;
@@ -10,6 +26,7 @@ import com.badlogic.gdx.utils.Array;
 public class TestNode implements IndexedNode<TestNode> {
 
 	public final static int TILE_SIZE = 50;
+	private final static int SPACE_BETWEEN_TILES = 2;
 	
 	/** Index that needs to be unique for every node and starts from 0. */
 	private int mIndex;
@@ -52,17 +69,21 @@ public class TestNode implements IndexedNode<TestNode> {
 	    mSelected = true;
 	}
 	
-	/** Render this tile as a white square. */
+	/** Render this tile as a white square or red if included in the found path. */
 	public void render(ShapeRenderer aShapeRenderer) {
 		if (mSelected) {
 		    aShapeRenderer.setColor(Color.RED);
 		} else {
 		    aShapeRenderer.setColor(Color.WHITE);
 		}
-		aShapeRenderer.line(mX, mY, mX, mY + TILE_SIZE);
-        aShapeRenderer.line(mX, mY, mX + TILE_SIZE, mY);
-        aShapeRenderer.line(mX, mY + TILE_SIZE, mX + TILE_SIZE, mY + TILE_SIZE);
-        aShapeRenderer.line(mX + TILE_SIZE, mY, mX + TILE_SIZE, mY + TILE_SIZE);
+		aShapeRenderer.line(mX, mY, mX, mY + TILE_SIZE - SPACE_BETWEEN_TILES);
+        aShapeRenderer.line(mX, mY, mX + TILE_SIZE - SPACE_BETWEEN_TILES, mY);
+        aShapeRenderer.line(mX, mY + TILE_SIZE - SPACE_BETWEEN_TILES, mX + TILE_SIZE - SPACE_BETWEEN_TILES, mY + TILE_SIZE - SPACE_BETWEEN_TILES);
+        aShapeRenderer.line(mX + TILE_SIZE - SPACE_BETWEEN_TILES, mY, mX + TILE_SIZE - SPACE_BETWEEN_TILES, mY + TILE_SIZE - SPACE_BETWEEN_TILES);
+	}
+
+	public String toString() {
+		return String.format("Index:%d x:%d y:%d", mIndex, mX, mY);
 	}
 
 }
