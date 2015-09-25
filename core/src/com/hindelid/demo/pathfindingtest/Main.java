@@ -41,7 +41,10 @@ public class Main extends ApplicationAdapter {
      * Make sure that this has the same size as mMap. */
     TestNode[][] mNodes = new TestNode[6][6];
 
-    /** 6x6 map where 1 is a node and 0 is not a node. */
+    /** 6x6 map where 1 is a node and 0 is not a node.
+     * On the screen x=0 and y=0 is the lower left corner.
+     * So this matrix below will actually rotate 90 deg
+     * counter clockwise when presented on screen. */
     int[][] mMap = { 
             { 1, 1, 1, 1, 1, 0 }, 
             { 0, 0, 1, 0, 1, 0 }, 
@@ -102,8 +105,8 @@ public class Main extends ApplicationAdapter {
     }
 
     private void calculatePath() {
-        TestNode startNode = mGraph.getNode(0); //Hardcoded for now
-        TestNode endNode = mGraph.getNode(10); //Hardcoded for now
+        TestNode startNode = mNodes[0][0]; //Hardcoded for now
+        TestNode endNode = mNodes[3][5]; //Hardcoded for now
 
         mPath.clear();
 
