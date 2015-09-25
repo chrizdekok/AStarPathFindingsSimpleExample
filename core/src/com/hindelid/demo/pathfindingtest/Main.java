@@ -57,8 +57,8 @@ public class Main extends ApplicationAdapter {
                 if (null != mNodes[x][y]) {
                     addNodeNeighbour(mNodes[x][y], x - 1, y);
                     addNodeNeighbour(mNodes[x][y], x + 1, y);
-                    addNodeNeighbour(mNodes[x][y], x - 1, y - 1);
-                    addNodeNeighbour(mNodes[x][y], x - 1, y + 1);
+                    addNodeNeighbour(mNodes[x][y], x, y - 1);
+                    addNodeNeighbour(mNodes[x][y], x, y + 1);
                 }
             }
         }
@@ -77,10 +77,7 @@ public class Main extends ApplicationAdapter {
     private void calculatePath() {
         TestNode startNode = mGraph.getNode(0); //Hardcoded 
         TestNode endNode = mGraph.getNode(10); //Hardcoded  
-        for (Connection<TestNode> c : startNode.getConnections()) {
-            System.out.println("Start Node FromCon:" + c.getFromNode().getIndex());
-            System.out.println("Start Node ToCon:" + c.getToNode().getIndex());
-        }
+
         mPath.clear();
 
         mPathFinder.searchNodePath(startNode, endNode, mHeuristic, mPath);

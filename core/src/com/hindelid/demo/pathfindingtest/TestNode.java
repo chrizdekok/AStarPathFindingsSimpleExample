@@ -55,9 +55,9 @@ public class TestNode implements IndexedNode<TestNode> {
 	/** Render this tile as a white square. */
 	public void render(ShapeRenderer aShapeRenderer) {
 		if (mSelected) {
-		    aShapeRenderer.setColor(Color.WHITE);
-		} else {
 		    aShapeRenderer.setColor(Color.RED);
+		} else {
+		    aShapeRenderer.setColor(Color.WHITE);
 		}
 		aShapeRenderer.line(mX, mY, mX, mY + TILE_SIZE);
         aShapeRenderer.line(mX, mY, mX + TILE_SIZE, mY);
